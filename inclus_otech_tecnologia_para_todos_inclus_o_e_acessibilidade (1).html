@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InclusãoTech - Tecnologia para Todos: Inclusão e Acessibilidade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --font-scale: 1rem;
+        }
+        body {
+            font-size: var(--font-scale);
+        }
+        /* Focus visible ring for accessibility */
+        *:focus-visible {
+            outline: 3px solid #4f46e5 !important;
+            outline-offset: 3px !important;
+        }
+        /* High contrast overrides */
+        body.high-contrast {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+        body.high-contrast header,
+        body.high-contrast footer,
+        body.high-contrast article,
+        body.high-contrast section,
+        body.high-contrast div {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            border-color: #ffff00 !important;
+        }
+        body.high-contrast a, 
+        body.high-contrast button {
+            background-color: #000000 !important;
+            color: #ffff00 !important;
+            border: 2px solid #ffff00 !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col">
+
+    <!-- Barra de Ferramentas de Acessibilidade Flutuante/Topo -->
+    <aside aria-label="Ferramentas de Acessibilidade" class="bg-slate-900 text-slate-100 py-2 px-4 text-sm border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            <span class="font-medium flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                Painel de Acessibilidade:
+            </span>
+            <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="adjustFontSize(0.1)" class="bg-slate-800 hover:bg-slate-700 text-slate-100 px-3 py-1 rounded font-bold transition" aria-label="Aumentar tamanho da fonte">A+</button>
+                <button onclick="adjustFontSize(-0.1)" class="bg-slate-800 hover:bg-slate-700 text-slate-100 px-3 py-1 rounded font-bold transition" aria-label="Diminuir tamanho da fonte">A-</button>
+                <button onclick="resetFontSize()" class="bg-slate-800 hover:bg-slate-700 text-slate-100 px-3 py-1 rounded transition" aria-label="Restaurar tamanho padrão da fonte">Reset</button>
+                <button onclick="toggleHighContrast()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded font-medium transition" aria-label="Alternar modo de alto contraste">Alto Contraste</button>
+                <button onclick="toggleDarkMode()" class="bg-slate-800 hover:bg-slate-700 text-slate-100 px-3 py-1 rounded transition" aria-label="Alternar Modo Escuro e Claro">Tema Escuro/Claro</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Cabeçalho Principal -->
+    <header class="bg-white dark:bg-slate-800 shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="text-center md:text-left">
+                <a href="#" class="text-2xl font-extrabold text-indigo-600 dark:text-indigo-400 focus:outline-none">InclusãoTech</a>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Tecnologia para todos: inclusão e acessibilidade</p>
+            </div>
+            
+            <!-- Menu de Navegação -->
+            <nav aria-label="Menu principal" class="flex flex-wrap items-center justify-center gap-1 sm:gap-4">
+                <a href="#apresentacao" class="px-3 py-2 rounded-lg text-sm font-medium hover:bg-indigo-50 dark:hover:bg-slate-700 transition">Início</a>
+                <a href="#recortes" class="px-3 py-2 rounded-lg text-sm font-medium hover:bg-indigo-50 dark:hover:bg-slate-700 transition">Recortes Temáticos</a>
+                <a href="#galeria" class="px-3 py-2 rounded-lg text-sm font-medium hover:bg-indigo-50 dark:hover:bg-slate-700 transition">Galeria</a>
+                <a href="#multimidia" class="px-3 py-2 rounded-lg text-sm font-medium hover:bg-indigo-50 dark:hover:bg-slate-700 transition">Vídeos e Podcasts</a>
+                <a href="#sobre" class="px-3 py-2 rounded-lg text-sm font-medium hover:bg-indigo-50 dark:hover:bg-slate-700 transition">Equipe</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow">
+
+        <!-- Apresentação / Introdução -->
+        <section id="apresentacao" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div class="bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-xl flex flex-col md:flex-row items-center gap-8">
+                <div class="space-y-6 flex-1">
+                    <span class="bg-indigo-400 bg-opacity-30 text-indigo-100 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Portal de Conscientização</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">Tecnologia para Todos: A Importância da Inclusão e Acessibilidade</h1>
+                    <p class="text-slate-100 text-lg leading-relaxed">
+                        A tecnologia moderna tem o poder extraordinário de conectar o mundo, mas esse potencial só se realiza plenamente quando é acessível a <strong class="underline decoration-indigo-300">todas as pessoas</strong>, independentemente de suas capacidades físicas, sensoriais ou cognitivas. Conscientizar sobre acessibilidade digital e inclusão social é o primeiro passo para construir um futuro onde ninguém seja deixado para trás.
+                    </p>
+                    <div class="pt-2">
+                        <a href="#recortes" class="inline-block bg-white text-indigo-700 font-semibold px-6 py-3 rounded-xl shadow hover:bg-slate-100 transition">Explorar Conteúdos</a>
+                    </div>
+                </div>
+                <div class="flex-1 w-full flex justify-center">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 max-w-md w-full">
+                        <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-indigo-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Compromisso com a Diversidade
+                        </h2>
+                        <p class="text-sm text-indigo-100 leading-relaxed">
+                            Uma página acessível considera diferentes formas de enxergar, ouvir, compreender e navegar pelo conteúdo. Navegue por nossos artigos, explore recursos multimídia e descubra como a inteligência artificial pode apoiar esse ecossistema.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recortes Temáticos -->
+        <section id="recortes" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Recortes Temáticos</h2>
+                <p class="text-slate-600 dark:text-slate-400">Aprofunde-se nos três pilares fundamentais da inclusão e da tecnologia contemporânea.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Artigo 1: Sociedade -->
+                <article class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold text-xl mb-4">01</div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Sociedade e Respeito às Diferencias</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            A inclusão escolar e no mercado de trabalho começa com a mudança de mentalidade. O combate ao preconceito exige empatia ativa e a criação de ambientes seguros, onde o respeito à diversidade humana seja o alicerce fundamental das relações cotidianas.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1 pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <li>• Inclusão escolar igualitária</li>
+                        <li>• Oportunidades no mercado de trabalho</li>
+                        <li>• Combate ativo ao capacitismo</li>
+                    </ul>
+                </article>
+
+                <!-- Artigo 2: Tecnologia Assistiva -->
+                <article class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold text-xl mb-4">02</div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">Acessibilidade Digital e Tecnologia</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Barreiras em sites e aplicativos impedem milhões de pessoas de utilizarem serviços essenciais. Leitores de tela, navegação por teclado e contraste adequado são ferramentas de tecnologia assistiva indispensáveis para garantir autonomia digital.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1 pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <li>• Diretrizes WCAG em ação</li>
+                        <li>• Importância de textos alternativos</li>
+                        <li>• Superação de barreiras digitais</li>
+                    </ul>
+                </article>
+
+                <!-- Artigo 3: Futuro com IA -->
+                <article class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg border border-slate-100 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center font-bold text-xl mb-4">03</div>
+                        <h3 class="text-xl font-bold mb-3 text-slate-900 dark:text-white">O Futuro: Inteligência Artificial</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                            Como a inteligência artificial pode apoiar — ou dificultar — a inclusão? Enquanto ferramentas de IA geram legendas automáticas e descrições visuais em tempo real, vieses algorítmicos e falta de dados inclusivos podem criar novas barreiras invisíveis.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1 pt-4 border-t border-slate-100 dark:border-slate-700">
+                        <li>• Automação de legendas e áudio</li>
+                        <li>• Mitigação de vieses algorítmicos</li>
+                        <li>• Ética no desenvolvimento tecnológico</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- Galeria Visual -->
+        <section id="galeria" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Galeria Visual de Conscientização</h2>
+                <p class="text-slate-600 dark:text-slate-400">Imagens representativas com descrições textuais alternativas completas para leitores de tela.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Imagem 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-700">
+                    <img 
+                        src="https://placehold.co/600x400/4f46e5/ffffff?text=Equipe+Diversa" 
+                        alt="Equipe diversa colaborando em frente a um computador, com pessoas de diferentes etnias e perfis trabalhando juntas em um projeto inclusivo."
+                        class="w-full h-48 object-cover"
+                        onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Imagem+Indisponivel'"
+                    >
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Colaboração Plural</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Equipes multidisciplinares criam soluções tecnológicas muito mais humanas e acessíveis.</p>
+                    </div>
+                </div>
+
+                <!-- Imagem 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-700">
+                    <img 
+                        src="https://placehold.co/600x400/4338ca/ffffff?text=Tecnologia+Assistiva" 
+                        alt="Pessoa utilizando leitor de tela em um notebook adaptado, destacando o uso de ferramentas de tecnologia assistiva para autonomia digital."
+                        class="w-full h-48 object-cover"
+                        onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Imagem+Indisponivel'"
+                    >
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Tecnologia Assistiva</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Garantir que interfaces sejam compatíveis com leitores de tela é um dever ético e legal.</p>
+                    </div>
+                </div>
+
+                <!-- Imagem 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-700">
+                    <img 
+                        src="https://placehold.co/600x400/312e81/ffffff?text=Inclusao+Escolar" 
+                        alt="Estudantes em uma sala de aula inclusiva utilizando tablets acessíveis e conversando de forma integrada e acolhedora."
+                        class="w-full h-48 object-cover"
+                        onerror="this.src='https://placehold.co/600x400/e2e8f0/475569?text=Imagem+Indisponivel'"
+                    >
+                    <div class="p-4">
+                        <h3 class="font-bold text-slate-900 dark:text-white mb-1">Inclusão Educacional</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">A base para transformar a sociedade começa nas escolas através de práticas pedagógicas inclusivas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Multimídia (Vídeo e Podcast) -->
+        <section id="multimidia" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Conteúdos Multimídia com Apoio de IA</h2>
+                <p class="text-slate-600 dark:text-slate-400">Materiais produzidos com apoio de inteligência artificial acompanhados de transcrições e descrições completas em texto.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Bloco de Vídeo -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-xl border border-slate-100 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-3 py-1 rounded-full">Vídeo Educativo (IA)</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Duração: 02:15</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">O Impacto da Acessibilidade na Web</h3>
+                        
+                        <!-- Simulador de Player de Vídeo Acessível -->
+                        <div id="video-container" class="relative bg-slate-900 rounded-2xl aspect-video flex flex-col items-center justify-center text-white overflow-hidden shadow-inner group">
+                            <div id="video-poster" class="absolute inset-0 bg-gradient-to-tr from-indigo-900 to-slate-900 flex flex-col items-center justify-center p-6 text-center">
+                                <svg class="w-16 h-16 text-indigo-400 mb-2 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span class="font-bold text-lg">Vídeo Gerado com Apoio de IA (Adobe Firefly / Canva)</span>
+                                <span class="text-xs text-slate-400 mt-1">Clique para iniciar simulação de reprodução</span>
+                            </div>
+                            <video id="simulated-video" class="w-full h-full object-cover hidden" controls aria-label="Vídeo sobre acessibilidade digital">
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                                Seu navegador não suporta a tag de vídeo.
+                            </video>
+                            <button onclick="playSimulatedVideo()" class="absolute inset-0 z-10 w-full h-full focus:outline-none" aria-label="Reproduzir vídeo educativo"></button>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Nativo de Transcrição do Vídeo -->
+                    <div class="mt-6">
+                        <details class="bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 transition">
+                            <summary class="font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer focus:outline-none select-none flex items-center justify-between">
+                                <span>Transcrição Completa e Descrição Visual do Vídeo</span>
+                                <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </summary>
+                            <div class="mt-4 text-sm text-slate-600 dark:text-slate-300 space-y-3 leading-relaxed border-t border-slate-200 dark:border-slate-800 pt-3">
+                                <p><strong>[00:00 - Descrição Visual]:</strong> Tela inicial exibindo animação fluida em tons de azul e roxo. Ícones de acessibilidade universal aparecem suavemente ao centro.</p>
+                                <p><strong>[00:10 - Narração / Apresentador]:</strong> "Bem-vindos ao portal InclusãoTech. Você já parou para pensar em quantas pessoas encontram barreiras diárias ao acessar sites e aplicativos?"</p>
+                                <p><strong>[00:45 - Descrição Visual]:</strong> A cena transiciona para ilustrar uma pessoa utilizando leitor de tela em um smartphone, com legendas sincronizadas em destaque na parte inferior.</p>
+                                <p><strong>[01:10 - Narração / Apresentador]:</strong> "Acessibilidade não é apenas cumprir diretrizes técnicas; é garantir dignidade, autonomia e cidadania em um mundo cada vez mais digital."</p>
+                                <p><strong>[02:00 - Descrição Visual]:</strong> Exibição do logotipo do projeto acompanhado de mensagem final de conscientização. Música suave de fundo encerra o vídeo.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Bloco de Podcast -->
+                <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-xl border border-slate-100 dark:border-slate-700 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-xs font-bold px-3 py-1 rounded-full">Podcast (IA)</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Episódio 01 • 04:30</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Futuro Inclusivo: O Papel da IA</h3>
+
+                        <!-- Player de Áudio Simulado / Funcional -->
+                        <div class="bg-gradient-to-r from-slate-900 to-indigo-950 rounded-2xl p-6 text-white shadow-inner flex flex-col justify-between h-48 sm:h-52">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center shrink-0 font-bold text-lg">🎙️</div>
+                                <div>
+                                    <h4 class="font-bold text-sm">Tecnologia para Todos - Ep. 1</h4>
+                                    <p class="text-xs text-slate-400">Produzido com apoio de NotebookLM & ElevenLabs</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Controles de Áudio Simulados -->
+                            <div class="space-y-2">
+                                <div class="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
+                                    <div id="audio-progress" class="bg-indigo-400 h-full w-0 transition-all duration-300"></div>
+                                </div>
+                                <div class="flex items-center justify-between text-xs text-slate-300">
+                                    <span id="audio-current-time">00:00</span>
+                                    <div class="flex items-center gap-3">
+                                        <button onclick="toggleAudio()" id="audio-play-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-full font-medium transition flex items-center gap-1.5" aria-label="Reproduzir episódio do podcast">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                                            <span id="audio-btn-text">Ouvir Episódio</span>
+                                        </button>
+                                    </div>
+                                    <span>04:30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Nativo de Transcrição do Podcast -->
+                    <div class="mt-6">
+                        <details class="bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 transition">
+                            <summary class="font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer focus:outline-none select-none flex items-center justify-between">
+                                <span>Roteiro e Transcrição Completa do Podcast</span>
+                                <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </summary>
+                            <div class="mt-4 text-sm text-slate-600 dark:text-slate-300 space-y-3 leading-relaxed border-t border-slate-200 dark:border-slate-800 pt-3">
+                                <p><strong>[Apresentador - Carlos]:</strong> "Olá a todos e bem-vindos ao nosso podcast especial sobre inclusão digital e tecnologia assistiva. Hoje conversamos com especialistas da área sobre o futuro."</p>
+                                <p><strong>[Especialista - Dra. Juliana Mendes]:</strong> "Olá Carlos! É um prazer estar aqui. O grande desafio hoje não é apenas criar novas tecnologias, mas garantir que elas sejam desenhadas desde o princípio para todas as pessoas."</p>
+                                <p><strong>[Carlos]:</strong> "Como a inteligência artificial pode atuar como aliada nesse processo?"</p>
+                                <p><strong>[Dra. Juliana Mendes]:</strong> "A IA oferece ferramentas incríveis para geração de descrições automáticas de imagens, legendas inteligentes e adaptação de interfaces. No entanto, precisamos auditar constantemente os modelos para evitar vieses discriminatórios."</p>
+                                <p><strong>[Carlos]:</strong> "Excelente reflexão. Agradecemos a participação de todos e convidamos você ouvinte a explorar nosso portal."</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer id="sobre" class="bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2">InclusãoTech</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Portal desenvolvido para conscientização sobre acessibilidade digital, inclusão social e ética no uso de inteligência artificial.</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">Identificação da Equipe</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Projeto apresentado para exposição tecnológica comunitária.</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Equipe Inclusão & Tecnologia 2026</p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">Mensagem Final</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 italic">"A verdadeira tecnologia inovadora é aquela que acolhe a todos sem distinção. Construir acessibilidade é construir cidadania."</p>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 dark:border-slate-700 pt-6 text-center text-xs text-slate-500 dark:text-slate-400">
+                &copy; 2026 InclusãoTech. Todos os direitos reservados. Desenvolvido com HTML semântico, Tailwind CSS e foco absoluto em acessibilidade WCAG.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Função de redimensionamento de fonte
+        let currentScale = 1.0;
+        function adjustFontSize(delta) {
+            currentScale = Math.max(0.8, Math.min(1.5, currentScale + delta));
+            document.documentElement.style.setProperty('--font-scale', currentScale + 'rem');
+        }
+        function resetFontSize() {
+            currentScale = 1.0;
+            document.documentElement.style.setProperty('--font-scale', '1rem');
+        }
+
+        // Alternar modo de alto contraste
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+        }
+
+        // Alternar modo escuro/claro
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+
+        // Controle do player de vídeo simulado
+        function playSimulatedVideo() {
+            const poster = document.getElementById('video-poster');
+            const video = document.getElementById('simulated-video');
+            poster.classList.add('hidden');
+            video.classList.remove('hidden');
+            video.play().catch(e => {
+                console.log("Reprodução automática bloqueada pelo navegador, controle manual ativado.");
+            });
+        }
+
+        // Controle do player de áudio simulado
+        let audioPlaying = false;
+        let audioInterval = null;
+        let audioProgressSec = 0;
+        const totalAudioSec = 270; // 04:30
+
+        function toggleAudio() {
+            const btnText = document.getElementById('audio-btn-text');
+            const progressBar = document.getElementById('audio-progress');
+            const timeDisplay = document.getElementById('audio-current-time');
+
+            audioPlaying = !audioPlaying;
+
+            if (audioPlaying) {
+                btnText.textContent = "Pausar";
+                audioInterval = setInterval(() => {
+                    audioProgressSec++;
+                    if (audioProgressSec > totalAudioSec) {
+                        audioProgressSec = 0;
+                        audioPlaying = false;
+                        btnText.textContent = "Ouvir Episódio";
+                        clearInterval(audioInterval);
+                    }
+                    const percent = (audioProgressSec / totalAudioSec) * 100;
+                    progressBar.style.width = percent + '%';
+                    
+                    const mins = Math.floor(audioProgressSec / 60).toString().padStart(2, '0');
+                    const secs = (audioProgressSec % 60).toString().padStart(2, '0');
+                    timeDisplay.textContent = `${mins}:${secs}`;
+                }, 1000);
+            } else {
+                btnText.textContent = "Retomar";
+                clearInterval(audioInterval);
+            }
+        }
+    </script>
+</body>
+</html>
